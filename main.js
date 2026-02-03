@@ -1,7 +1,8 @@
 const main = document.getElementById("main");
+const inventory = document.getElementById("inventory");
 
 function createTree(rootRow = 9, rootColumn, treeHeight, i, j, cell) {
-    console.log(treeHeight);
+    // console.log(treeHeight);
 
     if (i >= (rootRow - treeHeight + 1) && i <= rootRow) {
         if (j == rootColumn) {
@@ -13,13 +14,13 @@ function createTree(rootRow = 9, rootColumn, treeHeight, i, j, cell) {
             cell.classList.add("leaf")
         }
     }
-
+    
     if (i >= (rootRow - treeHeight - 2) && i <= (rootRow - treeHeight - 1)) {
         if (j > (rootColumn - 3) && j < (rootColumn + 3)) {
             cell.classList.add("leaf")
         }
     }
-
+    
     if (i >= (rootRow - treeHeight - 4) && i <= (rootRow - treeHeight - 3)) {
         if (j > (rootColumn - 2) && j < (rootColumn + 2)) {
             cell.classList.add("leaf")
@@ -30,7 +31,7 @@ function createTree(rootRow = 9, rootColumn, treeHeight, i, j, cell) {
 function createMap() {
     const arr = [];
     const treeHeights = [];
-    const maxTrees = 10;
+    const maxTrees = Math.floor(Math.random() * 2);
     for (let i = 0; i < maxTrees; i++) {
         let rnd = Math.floor(Math.random() * 100);
         while (arr.includes(rnd) || arr.includes(rnd + 1) || arr.includes(rnd + 2) || arr.includes(rnd + 3) || arr.includes(rnd - 1) || arr.includes(rnd - 2) || arr.includes(rnd - 3)) {
@@ -60,10 +61,6 @@ function createMap() {
             main.append(cell);
         }
     }
-    const button = document.createElement("button")
-    button.classList.add("buttons")
-    button.ariaValueText("aaa")
 }
-
-
 createMap()
+
