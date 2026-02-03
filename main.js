@@ -61,24 +61,22 @@ function createMap() {
     }
 }
 
-function removeCell(type) {
-    document.body.addEventListener("click", (event) => {
-        const target = event.target.classList
-        console.log(target.contains("cell"))
-        console.log(target)
-        if (target.contains(type)) {
-            target.remove(type);
-            target.remove(type);
-        }
-    })
-}
-
 function changeCursor(type) {
-    const inventory = document.getElementById("inventory")
     inventory.addEventListener("click", (event) => {
         const target = event.target.classList
         if (target.contains(type)){
             document.body.style.cursor = `url(https://guileless-pegasus-d698c6.netlify.app/cursor/${type}.png), auto`
+            cursor = type
+            checkCursor(cursor)
+        }
+    })
+}
+
+function removeCell(type) {
+    document.body.addEventListener("click", (event) => {
+        const target = event.target.classList
+        if (target.contains(type)) {
+            target.remove(type);
         }
     })
 }
