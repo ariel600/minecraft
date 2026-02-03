@@ -33,6 +33,7 @@ function createMap() {
     const maxTrees = Math.floor((Math.random() * 12) + 4);
     for (let i = 0; i < maxTrees; i++) {
         let rndComomns = Math.floor(Math.random() * 100);
+        
         while (colomnsTrees.includes(rndComomns) || colomnsTrees.includes(rndComomns + 1) || colomnsTrees.includes(rndComomns + 2) || colomnsTrees.includes(rndComomns + 3) || colomnsTrees.includes(rndComomns - 1) || colomnsTrees.includes(rndComomns - 2) || colomnsTrees.includes(rndComomns - 3)) {
             rndComomns = Math.floor(Math.random() * 100);
         };
