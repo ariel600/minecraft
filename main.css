@@ -47,20 +47,20 @@
     background-size: cover;
 }
 
-.pickaxeB {
+.shears {
+    background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/shears.webp");
+}
+
+.diamond-pickaxe {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/diamond-pickaxe.webp");
 }
 
-.axeB {
+.diamond-axe {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/diamond-axe.webp");
 }
 
-.shovelB {
+.diamond-shovel {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/diamond-shovel.webp");
-}
-
-.shearsB {
-    background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/shears.webp");
 }
 
 .leafB {

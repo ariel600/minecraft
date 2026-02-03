@@ -73,6 +73,15 @@ function removeCell(type) {
     })
 }
 
+function changeCursor(type) {
+    const inventory = document.getElementById("inventory")
+    inventory.addEventListener("click", (event) => {
+        const target = event.target.classList
+        if (target.contains(type)){
+            document.body.style.cursor = `url(https://guileless-pegasus-d698c6.netlify.app/cursor/${type}.png), auto`
+        }
+    })
+}
 createMap()
 removeCell("leaf")
 removeCell("tree")
@@ -80,3 +89,7 @@ removeCell("grass")
 removeCell("dirt")
 removeCell("stone")
 removeCell("bedrock")
+changeCursor("diamond-pickaxe")
+changeCursor("diamond-shovel")
+changeCursor("diamond-axe")
+changeCursor("shears")
