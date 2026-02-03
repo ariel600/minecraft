@@ -4,27 +4,28 @@ const inventory = document.getElementById("inventory");
 function createTree(rootRow = 9, rootColumn, treeHeight, i, j, cell) {
     if (i >= (rootRow - treeHeight + 1) && i <= rootRow) {
         if (j == rootColumn) {
-            cell.classList.add("tree")
-        }
-    }
+            cell.classList.add("tree");
+        };
+    };
+
     if (i >= (rootRow - treeHeight) && i <= (rootRow - treeHeight + 1)) {
         if (j > (rootColumn - 4) && j < (rootColumn + 4)) {
-            cell.classList.add("leaf")
-        }
-    }
+            cell.classList.add("leaf");
+        };
+    };
 
     if (i >= (rootRow - treeHeight - 2) && i <= (rootRow - treeHeight - 1)) {
         if (j > (rootColumn - 3) && j < (rootColumn + 3)) {
-            cell.classList.add("leaf")
-        }
-    }
+            cell.classList.add("leaf");
+        };
+    };
 
     if (i >= (rootRow - treeHeight - 4) && i <= (rootRow - treeHeight - 3)) {
         if (j > (rootColumn - 2) && j < (rootColumn + 2)) {
-            cell.classList.add("leaf")
-        }
-    }
-}
+            cell.classList.add("leaf");
+        };
+    };
+};
 
 function createMap() {
     const colomnsTrees = [];
@@ -34,74 +35,75 @@ function createMap() {
         let rndComomns = Math.floor(Math.random() * 100);
         while (colomnsTrees.includes(rndComomns) || colomnsTrees.includes(rndComomns + 1) || colomnsTrees.includes(rndComomns + 2) || colomnsTrees.includes(rndComomns + 3) || colomnsTrees.includes(rndComomns - 1) || colomnsTrees.includes(rndComomns - 2) || colomnsTrees.includes(rndComomns - 3)) {
             rndComomns = Math.floor(Math.random() * 100);
-        }
+        };
         colomnsTrees.push(rndComomns);
         treeHeights.push(Math.floor(Math.random() * 3) + 3);
-    }
+    };
 
     for (let i = 0; i < 30; i++) {
         for (let j = 0; j < 100; j++) {
-            const cell = document.createElement("div")
+            const cell = document.createElement("div");
             cell.classList.add("cell");
             if (i < 10) {
                 colomnsTrees.forEach((rootColumn, index) => {
                     createTree(9, rootColumn, treeHeights[index], i, j, cell);
-                })
+                });
             } else if (i == 10) {
-                cell.classList.add("grass")
+                cell.classList.add("grass");
             } else if (i < 15) {
-                cell.classList.add("dirt")
+                cell.classList.add("dirt");
             } else if (i < 28) {
-                cell.classList.add("stone")
+                cell.classList.add("stone");
             } else {
-                cell.classList.add("bedrock")
-            }
+                cell.classList.add("bedrock");
+            };
             main.append(cell);
-        }
-    }
-}
+        };
+    };
+};
 
-let cursor
+let cursor;
 
 function changeCursor(target) {
-    document.body.style.cursor = `url(https://guileless-pegasus-d698c6.netlify.app/cursor/${target}.png), auto`
-    cursor = target
-}
+    document.body.style.cursor = `url(https://guileless-pegasus-d698c6.netlify.app/cursor/${target}.png), auto`;
+    cursor = target;
+};
 
 function removeCell(target) {
-    console.log("target", target, "cursor", cursor)
+    console.log("target", target, "cursor", cursor);
     switch (cursor) {
         case "shears": if (target[1] === "leaf" || target[1] === "tree") {
             target.remove(target[1]);
-        }
+            break;
+        };
         case "diamond-axe": if (target[1] === "grass") {
             target.remove(target[1]);
-        }
+            break;
+        };
         case "diamond-shovel": if (target[1] === "dirt") {
             target.remove(target[1]);
-        }
+            break;
+        };
         case "diamond-pickaxe": if (target[1] === "stone") {
             target.remove(target[1]);
-        }
-    }
-}
+            break;
+        };
+    };
+};
 
 function startGame() {
-    createMap()
+    createMap();
     document.body.addEventListener("click", (event) => {
-        const target = event.target.classList
-        console.log(target)
+        const target = event.target.classList;
         if (target[1] === "diamond-pickaxe" || target[1] === "diamond-shovel" || target[1] === "diamond-axe" || target[1] === "shears") {
-            changeCursor(target[1])
+            changeCursor(target[1]);
         } else if (target.contains("cell")) {
-            console.log("aa")
-            removeCell(target)
-        }
+            removeCell(target);
+        };
+    });
+};
 
-    })
-}
-
-startGame()
+startGame();
 
 // changeCursor("diamond-pickaxe")
 // changeCursor("diamond-shovel")
