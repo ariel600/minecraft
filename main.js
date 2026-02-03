@@ -1,9 +1,7 @@
 const main = document.getElementById("main");
 const inventory = document.getElementById("inventory");
 
-function createTree(rootRow = 9, rootColumn, treeHeight, i, j, cell) {
-    // console.log(treeHeight);
-
+function createTree(rootRow = 9, rootColumn = 5, treeHeight = 4, i, j, cell) {
     if (i >= (rootRow - treeHeight + 1) && i <= rootRow) {
         if (j == rootColumn) {
             cell.classList.add("tree")
@@ -14,13 +12,13 @@ function createTree(rootRow = 9, rootColumn, treeHeight, i, j, cell) {
             cell.classList.add("leaf")
         }
     }
-    
+
     if (i >= (rootRow - treeHeight - 2) && i <= (rootRow - treeHeight - 1)) {
         if (j > (rootColumn - 3) && j < (rootColumn + 3)) {
             cell.classList.add("leaf")
         }
     }
-    
+
     if (i >= (rootRow - treeHeight - 4) && i <= (rootRow - treeHeight - 3)) {
         if (j > (rootColumn - 2) && j < (rootColumn + 2)) {
             cell.classList.add("leaf")
@@ -29,15 +27,15 @@ function createTree(rootRow = 9, rootColumn, treeHeight, i, j, cell) {
 }
 
 function createMap() {
-    const arr = [];
+    const colomnsTrees = [];
     const treeHeights = [];
-    const maxTrees = Math.floor(Math.random() * 2);
+    const maxTrees = Math.floor((Math.random() * 12) + 4);
     for (let i = 0; i < maxTrees; i++) {
-        let rnd = Math.floor(Math.random() * 100);
-        while (arr.includes(rnd) || arr.includes(rnd + 1) || arr.includes(rnd + 2) || arr.includes(rnd + 3) || arr.includes(rnd - 1) || arr.includes(rnd - 2) || arr.includes(rnd - 3)) {
-            rnd = Math.floor(Math.random() * 100);
+        let rndComomns = Math.floor(Math.random() * 100);
+        while (colomnsTrees.includes(rndComomns) || colomnsTrees.includes(rndComomns + 1) || colomnsTrees.includes(rndComomns + 2) || colomnsTrees.includes(rndComomns + 3) || colomnsTrees.includes(rndComomns - 1) || colomnsTrees.includes(rndComomns - 2) || colomnsTrees.includes(rndComomns - 3)) {
+            rndComomns = Math.floor(Math.random() * 100);
         }
-        arr.push(rnd);
+        colomnsTrees.push(rndComomns);
         treeHeights.push(Math.floor(Math.random() * 3) + 3);
     }
 
@@ -46,7 +44,7 @@ function createMap() {
             const cell = document.createElement("div")
             cell.classList.add("cell");
             if (i < 10) {
-                arr.forEach((rootColumn, index) => {
+                colomnsTrees.forEach((rootColumn, index) => {
                     createTree(9, rootColumn, treeHeights[index], i, j, cell);
                 })
             } else if (i == 10) {
@@ -62,5 +60,23 @@ function createMap() {
         }
     }
 }
-createMap()
 
+function removeCell(type) {
+    document.body.addEventListener("click", (event) => {
+        const target = event.target.classList
+        console.log(target.contains("cell"))
+        console.log(target)
+        if (target.contains(type)) {
+            target.remove(type);
+            target.remove(type);
+        }
+    })
+}
+
+createMap()
+removeCell("leaf")
+removeCell("tree")
+removeCell("grass")
+removeCell("dirt")
+removeCell("stone")
+removeCell("bedrock")
