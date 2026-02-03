@@ -1,7 +1,7 @@
 const main = document.getElementById("main");
 const inventory = document.getElementById("inventory");
 
-function createTree(rootRow = 9, rootColumn = 5, treeHeight = 4, i, j, cell) {
+function createTree(rootRow = 9, rootColumn, treeHeight, i, j, cell) {
     if (i >= (rootRow - treeHeight + 1) && i <= rootRow) {
         if (j == rootColumn) {
             cell.classList.add("tree")
@@ -61,33 +61,55 @@ function createMap() {
     }
 }
 
-function changeCursor(type) {
-    inventory.addEventListener("click", (event) => {
-        const target = event.target.classList
-        if (target.contains(type)){
-            document.body.style.cursor = `url(https://guileless-pegasus-d698c6.netlify.app/cursor/${type}.png), auto`
-            cursor = type
-            checkCursor(cursor)
+let cursor
+
+function changeCursor(target) {
+    document.body.style.cursor = `url(https://guileless-pegasus-d698c6.netlify.app/cursor/${target}.png), auto`
+    cursor = target
+}
+
+function removeCell(target) {
+    console.log("target", target, "cursor", cursor)
+    switch (cursor) {
+        case "shears": if (target[1] === "leaf" || target[1] === "tree") {
+            target.remove(target[1]);
         }
+        case "diamond-axe": if (target[1] === "grass") {
+            target.remove(target[1]);
+        }
+        case "diamond-shovel": if (target[1] === "dirt") {
+            target.remove(target[1]);
+        }
+        case "diamond-pickaxe": if (target[1] === "stone") {
+            target.remove(target[1]);
+        }
+    }
+}
+
+function startGame() {
+    createMap()
+    document.body.addEventListener("click", (event) => {
+        const target = event.target.classList
+        console.log(target)
+        if (target[1] === "diamond-pickaxe" || target[1] === "diamond-shovel" || target[1] === "diamond-axe" || target[1] === "shears") {
+            changeCursor(target[1])
+        } else if (target.contains("cell")) {
+            console.log("aa")
+            removeCell(target)
+        }
+
     })
 }
 
-function removeCell(type) {
-    document.body.addEventListener("click", (event) => {
-        const target = event.target.classList
-        if (target.contains(type)) {
-            target.remove(type);
-        }
-    })
-}
-createMap()
-removeCell("leaf")
-removeCell("tree")
-removeCell("grass")
-removeCell("dirt")
-removeCell("stone")
-removeCell("bedrock")
-changeCursor("diamond-pickaxe")
-changeCursor("diamond-shovel")
-changeCursor("diamond-axe")
-changeCursor("shears")
+startGame()
+
+// changeCursor("diamond-pickaxe")
+// changeCursor("diamond-shovel")
+// changeCursor("diamond-axe")
+// changeCursor("shears")
+// removeCell("leaf")
+// removeCell("tree")
+// removeCell("grass")
+// removeCell("dirt")
+// removeCell("stone")
+// removeCell("bedrock")
