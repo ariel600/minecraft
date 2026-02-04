@@ -71,25 +71,27 @@ function changeCursor(target) {
 };
 
 function removeCell(target) {
-    if (cursor === "shears" && target[1] === "leaf") {
-        target.remove(target[1]);
-    }
-    if (cursor === "diamond-axe" && target[1] === "tree") {
-        target.remove(target[1]);
-    }
-    if (cursor === "diamond-shovel" && (target[1] === "dirt" || target[1] === "grass")) {
-        target.remove(target[1]);
-    }
-    if (cursor === "diamond-pickaxe" && target[1] === "stone") {
+    if (
+        (cursor === "shears" && target[1] === "leaf") ||
+        (cursor === "diamond-axe" && target[1] === "tree") ||
+        (cursor === "diamond-shovel" && (target[1] === "dirt" || target[1] === "grass")) ||
+        (cursor === "diamond-pickaxe" && target[1] === "stone")
+    ) {
+        addInventory(target[1])
         target.remove(target[1]);
     }
 };
+
+function addInventory(type) {
+    const tile = document.querySelector(`.${type}B`)
+    tile.style.display = 'block'
+    tile.classList.add('inventory')
+}
 
 function startGame() {
     createMap();
     document.body.addEventListener("click", (event) => {
         const target = event.target.classList;
-        
         if (target[1] === "diamond-pickaxe" || target[1] === "diamond-shovel" || target[1] === "diamond-axe" || target[1] === "shears") {
             changeCursor(target[1]);
         } else if (target.contains("cell")) {
@@ -97,7 +99,6 @@ function startGame() {
         };
     });
 };
-
 startGame();
 
 // changeCursor("diamond-pickaxe")
