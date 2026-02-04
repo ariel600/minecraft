@@ -33,7 +33,7 @@ function createMap() {
     const maxTrees = Math.floor((Math.random() * 12) + 4);
     for (let i = 0; i < maxTrees; i++) {
         let rndComomns = Math.floor(Math.random() * 100);
-        
+
         while (colomnsTrees.includes(rndComomns) || colomnsTrees.includes(rndComomns + 1) || colomnsTrees.includes(rndComomns + 2) || colomnsTrees.includes(rndComomns + 3) || colomnsTrees.includes(rndComomns - 1) || colomnsTrees.includes(rndComomns - 2) || colomnsTrees.includes(rndComomns - 3)) {
             rndComomns = Math.floor(Math.random() * 100);
         };
@@ -71,31 +71,25 @@ function changeCursor(target) {
 };
 
 function removeCell(target) {
-    console.log("target", target, "cursor", cursor);
-    switch (cursor) {
-        case "shears": if (target[1] === "leaf" || target[1] === "tree") {
-            target.remove(target[1]);
-            break;
-        };
-        case "diamond-axe": if (target[1] === "grass") {
-            target.remove(target[1]);
-            break;
-        };
-        case "diamond-shovel": if (target[1] === "dirt") {
-            target.remove(target[1]);
-            break;
-        };
-        case "diamond-pickaxe": if (target[1] === "stone") {
-            target.remove(target[1]);
-            break;
-        };
-    };
+    if (cursor === "shears" && target[1] === "leaf") {
+        target.remove(target[1]);
+    }
+    if (cursor === "diamond-axe" && target[1] === "tree") {
+        target.remove(target[1]);
+    }
+    if (cursor === "diamond-shovel" && (target[1] === "dirt" || target[1] === "grass")) {
+        target.remove(target[1]);
+    }
+    if (cursor === "diamond-pickaxe" && target[1] === "stone") {
+        target.remove(target[1]);
+    }
 };
 
 function startGame() {
     createMap();
     document.body.addEventListener("click", (event) => {
         const target = event.target.classList;
+        
         if (target[1] === "diamond-pickaxe" || target[1] === "diamond-shovel" || target[1] === "diamond-axe" || target[1] === "shears") {
             changeCursor(target[1]);
         } else if (target.contains("cell")) {

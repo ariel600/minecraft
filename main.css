@@ -8,6 +8,10 @@
     background-size: cover;
 }
 
+.cell:hover{
+    border: 1px solid black;
+}
+
 .leaf {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/oak-leaves.webp");
 }
