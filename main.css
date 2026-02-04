@@ -110,7 +110,7 @@
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/bedrock.webp");
 }
 
-@media (400px <=width <=700px) {
+@media (300px <=width <=1440px) {
     body {
         width: 100vw;
         height: 100vh;
