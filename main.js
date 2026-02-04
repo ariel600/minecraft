@@ -91,11 +91,11 @@ const storeObject = {
     stone: 0
 }
 
-function addCell() {
-    if(cursor === "oak-leaves"){
-        document.document.createElement("div").classList.add("")
-    }
-}
+// function addCell() {
+//     if(cursor === "oak-leaves"){
+//         document.document.createElement("div").classList.add("")
+//     }
+// }
 
 function addInventory(type) {
     const tile = document.querySelector(`.${type}B`)
