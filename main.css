@@ -58,13 +58,16 @@
     background-size: cover;
     border: 2px double rgb(40, 178, 154);
     border-radius: 5px;
+    color: white;
+    text-align: center;
+    place-content: center;
 }
 
-.counter{
+/* .counter{
     font-size: 8px;
     color: red;
     transform: translate(1rem, 1rem);
-}
+} */
 
 .shears {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/shears.webp");
@@ -84,30 +87,24 @@
 
 .leafB {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/oak-leaves.webp");
-    display: none;
 }
 
 .treeB {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/oak-log.webp");
-    display: none;
 }
 
 .grassB {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/grass.webp");
-    display: none;
 }
 
 .dirtB {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/dirt.webp");
-    display: none;
 }
 
 .stoneB {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/stone.webp");
-    display: none;
 }
 
 .bedrockB {
     background-image: url("https://guileless-pegasus-d698c6.netlify.app/blocks/bedrock.webp");
-    display: none;
 }

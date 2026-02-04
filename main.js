@@ -79,13 +79,23 @@ function removeCell(target) {
     ) {
         addInventory(target[1])
         target.remove(target[1]);
+        target.remove("leaf");
     }
 };
 
+const storeObject = {
+    leaf: 0,
+    tree: 0,
+    grass: 0,
+    dirt: 0,
+    stone: 0
+}
+
 function addInventory(type) {
     const tile = document.querySelector(`.${type}B`)
-    tile.style.display = 'block'
     tile.classList.add('inventory')
+    storeObject[type]++;
+    tile.innerText = storeObject[type];
 }
 
 function startGame() {
@@ -100,14 +110,3 @@ function startGame() {
     });
 };
 startGame();
-
-// changeCursor("diamond-pickaxe")
-// changeCursor("diamond-shovel")
-// changeCursor("diamond-axe")
-// changeCursor("shears")
-// removeCell("leaf")
-// removeCell("tree")
-// removeCell("grass")
-// removeCell("dirt")
-// removeCell("stone")
-// removeCell("bedrock")
