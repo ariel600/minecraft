@@ -91,6 +91,13 @@ const storeObject = {
     stone: 0
 }
 
+// function addcell(type) {
+//     const tile = document.querySelector(`.${type}B`)
+//     tile.classList.add('inventory')
+//     storeObject[type]++;
+//     tile.innerText = storeObject[type];
+// }
+
 function addInventory(type) {
     const tile = document.querySelector(`.${type}B`)
     tile.classList.add('inventory')
@@ -98,12 +105,24 @@ function addInventory(type) {
     tile.innerText = storeObject[type];
 }
 
+const typeCursor = {
+    leafB: "oak-leaves",
+    treeB: "oak-log",
+    grassB: "grass",
+    dirtB: "dirt",
+    stoneB: "stone"
+
+}
+
 function startGame() {
     createMap();
     document.body.addEventListener("click", (event) => {
         const target = event.target.classList;
+        console.log(typeCursor[target[0]])
         if (target[1] === "diamond-pickaxe" || target[1] === "diamond-shovel" || target[1] === "diamond-axe" || target[1] === "shears") {
             changeCursor(target[1]);
+        } else if (target[1] === "inventory") {
+            changeCursor(typeCursor[target[0]])
         } else if (target.contains("cell")) {
             removeCell(target);
         };
