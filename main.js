@@ -91,15 +91,34 @@ const storeObject = {
     stone: 0
 }
 
-// function addCell() {
-//     if(cursor === "oak-leaves"){
-//         document.document.createElement("div").classList.add("")
-//     }
-// }
+function addCell(target) {
+    let type
+    if (cursor === "oak-leaves" && storeObject.leaf > 0) {
+        target.add("leaf");
+        storeObject.leaf--
+        type = "leaf"
+    }
+    if (cursor === "oak-log" && storeObject.tree > 0) {
+        target.add("tree");
+        storeObject.tree--
+        type = "tree"
+    }
+    if ((cursor === "grass" || cursor === "dirt" || cursor === "stone") && storeObject[cursor] > 0) {
+        target.add(cursor);
+        storeObject[cursor]--
+        type = cursor
+    }
+    if (storeObject[type] <= 0) {
+        const tile = document.querySelector(`.${type}B`)
+        tile.classList.remove("inventory")
+        tile.style.display = 'none'
+    }
+    document.querySelector(`.${type}B`).innerText = storeObject[type];
+}
 
 function addInventory(type) {
     const tile = document.querySelector(`.${type}B`)
-    tile.classList.add('inventory')
+    tile.classList.add("inventory")
     storeObject[type]++;
     tile.innerText = storeObject[type];
 }
@@ -117,7 +136,7 @@ function startGame() {
     document.body.addEventListener("click", (event) => {
         const target = event.target.classList;
         if (target.value === "cell") {
-            addCell()
+            addCell(target)
         }
         if (target[1] === "diamond-pickaxe" || target[1] === "diamond-shovel" || target[1] === "diamond-axe" || target[1] === "shears") {
             changeCursor(target[1]);
@@ -128,4 +147,5 @@ function startGame() {
         };
     });
 };
+
 startGame();
