@@ -108,12 +108,13 @@ function addCell(target) {
         storeObject[cursor]--
         type = cursor
     }
+    document.querySelector(`.${type}B`).innerText = storeObject[type];
     if (storeObject[type] <= 0) {
         const tile = document.querySelector(`.${type}B`)
         tile.classList.remove("inventory")
-        tile.style.display = 'none'
+        tile.textContent = "";
+        document.body.style.cursor = "auto"
     }
-    document.querySelector(`.${type}B`).innerText = storeObject[type];
 }
 
 function addInventory(type) {
